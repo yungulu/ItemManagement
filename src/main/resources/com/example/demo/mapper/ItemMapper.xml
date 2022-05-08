@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--下面的才是要自己编写的地方-->
+<!--写mapper的配置文件第一步就是要写<mapper></mapper>标签-->
+<!--<mapper></mapper>标签里包含着各个CURD操作的SQL语句-->
+<mapper namespace="com.example.demo.mapper.ItemMapper">
+    <!--定义一个名为BaseResultMap的返回类型-->
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.Item">
+        <id column="item_id" property="item_id" jdbcType="INTEGER"></id>
+        <result column="item_name" property="item_name" jdbcType="CHAR"></result>
+        <result column="item_sp_place" property="item_sp_place" jdbcType="VARCHAR"></result>
+        <result column="item_num" property="item_num" jdbcType="INTEGER"></result>
+        <result column="expiration_date" property="expiration_date" jdbcType="VARCHAR"></result>
+        <result column="item_tag" property="item_tag" jdbcType="CHAR"></result>
+        <result column="remark" property="remark" jdbcType="VARCHAR"></result>
+        <result column="user_id" property="user_id" jdbcType="INTEGER"></result>
+        <result column="room_id" property="room_id" jdbcType="INTEGER"></result>
+        <result column="building_id" property="building_id" jdbcType="INTEGER"></result>
+    </resultMap>
+ 
+    <!--插入语句-->
+    <!--id要与ItemMapper文件中表示插入的函数名一致，parameterType表示函数的输入参数的类型-->
+    <insert id="insertItem" parameterType="com.example.demo.entity.Item">
+      insert into item(item_id,item_name,item_sp_place,item_num,expiration_date,item_tag,remark,user_id,room_id,building_id)values(null,#{item_name,jdbcType=CHAR},#{item_sp_place,jdbcType=VARCHAR},#{item_num,jdbcType=INTEGER},#{expiration_date,jdbcType=VARCHAR},#{item_tag,jdbcType=CHAR},#{remark,jdbcType=VARCHAR},#{user_id,jdbcType=INTEGER},#{room_id,jdbcType=INTEGER},#{building_id,jdbcType=INTEGER})/*SQL语句*/
+    </insert>
+ 
+    <!--删除语句-->
+    <delete id="deleteItem" parameterType="java.lang.Integer">
+      delete from item where item_id =#{item_id,jdbcType=INTEGER}
+    </delete>
+ 
+    <!--根据Id查找物品语句-->
+    <!--resultMap表示函数返回的类型-->
+    <select id="selectItem" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+       select * from item where item_id = #{item_id,jdbcType=INTEGER}
+    </select>
+    
+    <!--查找所有物品-->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from item where user_id = 1
+    </select>
+    
+     <!--查找到期时间-->
+    <select id="selectExDate" resultMap="BaseResultMap">
+        select * from item where user_id = 2
+    </select>
+    
+    <!--修改语句-->
+    <update id="updateItem" parameterType="com.example.demo.entity.Item">
+        update item set item_name=#{item_name,jdbcType=VARCHAR},item_sp_place=#{item_sp_place},item_num=#{item_num} where item_id=#{item_id,jdbcType=INTEGER}/***重复性语句，没有写，之后补上***/
+    </update>
+</mapper>

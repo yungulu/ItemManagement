@@ -1,0 +1,23 @@
+server:
+  port: 8083  #tomcat端口
+ 
+spring: #springboot的配置
+  datasource: #定义数据源
+    name: item_db
+    #127.0.0.1为本机测试的ip，3306是mysql的端口号。serverTimezone是定义时区，mysql高版本需要定义这些东西
+    #useSSL也是某些高版本mysql需要问有没有用SSL连接
+    url: jdbc:mysql://127.0.0.1:3306/item_db?characterEncoding=utf-8&&serverTimezone=GMT%2B8&&useSSL=FALSE
+    username: root  #数据库用户名，root为管理员
+    password: JQY0304 #该数据库用户的密码
+    driverClassName: com.mysql.cj.jdbc.Driver
+  mvc:
+    static-path-pattern: /static/**
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+mybatis:  #mybatyis的配置
+  mapper-locations: classpath*:mapper/*.xml #指定mapper的配置文件的路径是mapper文件夹下的所有 xml文件。
+  type-aliases-package: com.example.demo.entity

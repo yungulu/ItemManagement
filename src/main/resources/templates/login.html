@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- meta使用viewport以确保页面可自由缩放 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 引入 jQuery Mobile 样式 -->
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+<!-- 引入 jQuery 库 -->
+<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- 引入 jQuery Mobile 库 -->
+<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<title>登录账户</title>
+
+	<script type="text/javascript">
+        $(function () {
+            $("#bth_login").click(function () {
+                $.post('/user/login',{
+                    user_name: user_name1.value,
+                    password: password1.value,
+                },function (){
+                    alert("登录成功");
+                    location="/toHome";
+                })
+
+            })
+        })
+    </script>
+</head>
+
+<body>
+
+<div data-role="page" id="login">
+	  <div data-role="header">
+	    <h1>登录账户</h1>
+	  </div>
+		<div data-role="main" class="ui-content">
+			<div data-role="content"  id="homeContent">	
+			    <label for="user_name">用户名:</label>
+			    <input type="text"  id="user_name1"  placeholder="请输入用户名">
+	    	</div>
+	    	
+	    	<div data-role="content"  id="homeContent">	
+			    <label for="password">密码:</label>
+			    <input type="text"  id="password1"  placeholder="请输入密码">
+	    	</div>
+	    	
+	    	<div data-role="content" id="homeContent" >	
+            <button id="bth_login" >登陆</button>
+            </div>
+  
+		</div>
+
+		<div data-role="footer" >
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#result" data-role="button" data-icon="forward" data-transition="slide">登录提示</a></li>
+					<li><a href="#register" data-role="button" data-icon="arrow-r" data-transition="slide" rel="external">没有账户，请先注册</a></li>
+				</ul>
+			</div>
+		</div>	
+</div>
+</body>
+</html>

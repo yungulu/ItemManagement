@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- meta使用viewport以确保页面可自由缩放 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 引入 jQuery Mobile 样式 -->
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+<!-- 引入 jQuery 库 -->
+<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- 引入 jQuery Mobile 库 -->
+<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<link href="../static/css/bootstrap.css" rel="stylesheet">
+
+<title>用户注册</title>
+<script type="text/javascript">
+ 
+        $(function () {
+	        $("#btn_insert_user").click(function () {
+                $.post('/user/insert',{
+                    user_name: user_name1.value,
+                    password: password1.value,
+					phone: phone1.value
+                },function (){
+                  	alert("注册成功");
+                    location="/toHome";
+                })
+
+            })
+        })
+</script>
+</head>
+<body background="../static/picture/popular2.jpg">
+<div data-role="page" id="register">
+		<div data-role="header" >
+			<h1>个人注册</h1>
+		</div>
+		
+		<div data-role="main" class="ui-content">
+	    
+			<div data-role="content"  id="homeContent">	
+				<label for="username">用户名：</label>
+				<input type="text" id="user_name1" placeholder="请输入用户名" />
+			</div>
+			
+			<div data-role="content" id="homeContent" >		
+				<label for="userpassword">密码：</label>
+				<input type="password" id="password1"  placeholder="请输入密码 " />
+			</div>
+			
+			<div data-role="content" id="homeContent" >	
+				<label for="phone">手机号码：</label>
+				<input type="text" id="phone1" placeholder="请输入手机号码" />
+			</div>
+			
+			<div data-role="content" id="homeContent" >	
+				<button class="btn btn-primary btn-lg btn-block" id= "btn_insert_user">注册</button>
+			</div>
+		
+	</div>
+
+		<div data-role="footer" >
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#result" data-role="button" data-icon="forward" data-transition="slide">登录提示</a></li>
+					<li><a href="#login" data-role="button" data-icon="arrow-r" data-transition="slide" rel="external">已有账户，直接登录</a></li>
+				</ul>
+			</div>
+		</div>		
+</div>
+
+</body>
+</html>
